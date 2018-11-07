@@ -14,6 +14,7 @@ module.exports = {
         'production': {},
         'stylelint': {},
         'emails': {},
-        'acid': {}
+        'acid': {},
+        'upload': {},
     }
 };
