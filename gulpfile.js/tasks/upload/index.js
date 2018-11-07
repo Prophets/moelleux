@@ -7,6 +7,10 @@ const customNotifier = require('../../lib/customNotifier');
 
 
 const uploadTask = () => {
+    if (!global.production) {
+      return;
+    }
+
     const connection = ftp.create({
         host: config.tasks.upload.cdn.host,
         user: config.tasks.upload.cdn.user,

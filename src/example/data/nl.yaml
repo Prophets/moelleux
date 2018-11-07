@@ -4,8 +4,8 @@ blocks:
         type: 'header'
         data:
             img:
-                mobile: 'header-mobile.jpg'
-                desktop: 'header-desktop.jpg'
+                mobile: 'article-tempo.png'
+                desktop: 'article-temp.png'
                 alt: 'Lekker veelzijdig. Lekker dichtbij.'
             url: 'https://www.timetomomo.com/nl/gids-belgische-kust-gratis/'
     -

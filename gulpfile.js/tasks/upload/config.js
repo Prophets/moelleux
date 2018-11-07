@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
+    'notWatchable': true,
     'excludeExtensions': ['html', 'css'],
     'cdn': {
         'host': process.env.CDN_HOST,

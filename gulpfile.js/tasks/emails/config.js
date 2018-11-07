@@ -1,6 +1,6 @@
 module.exports = {
     'taskName': 'emails',
-    'src': 'templates',
+    'src': './',
     'dest': './',
     'htmlmin': {
         'collapseWhitespace': true

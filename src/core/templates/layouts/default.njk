@@ -5,7 +5,12 @@
         <mj-style src="../../../public/{{ folder }}/css/styles.css" cssinline inline="inline"></mj-style>
     </mj-head>
     <mj-body>
-        {% block content %}{% endblock %}
+        {% include 'partials/supheader.njk' %}
+
+        {% for block in content.blocks %}
+            {% set data = block.data %}
+            {% include '../partials/' + block.type + '.njk' %}
+        {% endfor %}
 
         {% include 'partials/footer.njk' %}
     </mj-body>

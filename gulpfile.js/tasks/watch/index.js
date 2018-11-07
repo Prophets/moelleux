@@ -15,8 +15,9 @@ const watchTask = () => {
 
     watchableTasks.forEach((taskName) => {
         const task = config.tasks[taskName];
-        if (task) {
+        if (task && task.notWatchable !== true) {
             const glob = path.join(config.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}');
+
             watch(glob, () => {
                 require('../' + taskName)();
             });

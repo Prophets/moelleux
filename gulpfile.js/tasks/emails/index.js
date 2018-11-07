@@ -75,10 +75,15 @@ const emailsTask = () => {
         ]
     }
 
+    const imagesRoot = global.production ? config.root.cdnPath : '';
+
     const tasks = getFolders(config.root.src).map((folder) => {
+
+        const imagesDestination = imagesRoot + '/' + folder + '/images';
+
         const subtasks = getLanguages(folder).map((lang) => {
             const paths = {
-                src: [path.join(config.root.src, folder, config.tasks.emails.src,  '/**/*.{' + config.tasks.emails.extensions + '}'), exclude],
+                src: [path.join(config.root.src, folder, 'templates',  '/**/*.{' + config.tasks.emails.extensions + '}'), exclude],
                 dest: path.join(config.root.dest, config.tasks.emails.dest, folder, '/')
             };
 
@@ -91,7 +96,7 @@ const emailsTask = () => {
                         watch: false
                     },
                     manageEnv(env) {
-                        env.addGlobal('imagePath', config.tasks.images ? config.tasks.images.dest : 'images');
+                        env.addGlobal('imagePath', imagesDestination);
                     }
                 }))
                 .on('error', handleErrors)

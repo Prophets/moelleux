@@ -1,10 +1,13 @@
+require('dotenv').config();
+
 const getArg = require('./lib/getArg');
 const destFolder = getArg('--build') ? './build' : './public';
 
 module.exports = {
     'root': {
         'src': './src',
-        'dest': destFolder
+        'dest': destFolder,
+        'cdnPath': process.env.CDN_BASE_URL + '/' + process.env.CDN_DESTINATION
     },
 
     'tasks': {
@@ -14,7 +17,6 @@ module.exports = {
         'production': {},
         'stylelint': {},
         'emails': {},
-        'acid': {},
         'upload': {},
     }
 };
