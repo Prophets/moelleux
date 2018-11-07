@@ -1,0 +1,19 @@
+title: 'Kom lekker naar Vlaanderen'
+blocks:
+    -
+        type: 'header'
+        data:
+            img:
+                mobile: 'header-mobile.jpg'
+                desktop: 'header-desktop.jpg'
+                alt: 'Lekker veelzijdig. Lekker dichtbij.'
+            url: 'https://www.timetomomo.com/nl/gids-belgische-kust-gratis/'
+    -
+        type: 'content'
+        data:
+            intro: 'Beste{if ::firstname::} #firstname#,{else} Vlaanderen-fan,{/if}<br><br>Vlaanderen is om van te smullen. Met ál je zintuigen.<br><br>Duik dit voorjaar in de wereld van meester-bierbrouwers en chocolatiers. Proef de heerlijke streekproducten tijdens een van de vele culinaire festivals. Of verwen jezelf met een avond heerlijk tafelen in een stemmig restaurant.<br><br>Geef je graag je ogen en oren de kost? Pik dan die ene toptentoonstelling mee.<br>Of geniet van een concert in een prachtig kader.<br><br>Het is in Vlaanderen ook heerlijk fietsen en genieten van het goede leven!<br><br>Laat je alvast inspireren door meester-genieter Bacchus.<br><br>Tip: Reis met de trein naar Vlaanderen, lekker makkelijk!'
+            button:
+                enabled: true
+                txt: 'Plan nú je lekkere trip'
+                url: 'https://www.flemishmasters.com/nl/themas/eten-drinken-festivals-fietsen'
+            outro: 'Warme groeten<br><br>Het team van Toerisme Vlaanderen'

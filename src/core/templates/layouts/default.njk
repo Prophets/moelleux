@@ -1,0 +1,12 @@
+<mjml>
+    <mj-head>
+        {% block head %}{% endblock %}
+        <mj-style src="../../../public/{{ folder }}/css/queries.css" cssinline></mj-style>
+        <mj-style src="../../../public/{{ folder }}/css/styles.css" cssinline inline="inline"></mj-style>
+    </mj-head>
+    <mj-body>
+        {% block content %}{% endblock %}
+
+        {% include 'partials/footer.njk' %}
+    </mj-body>
+</mjml>

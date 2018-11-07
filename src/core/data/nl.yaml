@@ -1,0 +1,9 @@
+---
+logo:
+    url: 'http://www.prophets.be'
+    img: 'logo.png'
+    alt: 'Alt Logo'
+footer:
+    legal: 'legal'
+    unsubscribe: 'unsubscribe'
+    disclaimer: 'disclaimer'
