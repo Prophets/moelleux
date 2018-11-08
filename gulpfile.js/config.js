@@ -18,5 +18,6 @@ module.exports = {
         'stylelint': {},
         'emails': {},
         'upload': {},
+        'overview': {}
     }
 };
