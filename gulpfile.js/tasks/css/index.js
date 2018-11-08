@@ -17,7 +17,7 @@ const merge = require('merge-stream');
 const cssTask = () => {
     const tasks = getFolders(config.root.src).map((folder) => {
         const paths = {
-            src: path.join(config.root.src, folder, config.tasks.css.src, '/**/*.{' + config.tasks.css.extensions + '}'),
+            src: path.join(config.root.src, folder, config.tasks.css.childSrc, '/**/*.{' + config.tasks.css.extensions + '}'),
             dest: path.join(config.root.dest, folder, config.tasks.css.dest)
         };
 

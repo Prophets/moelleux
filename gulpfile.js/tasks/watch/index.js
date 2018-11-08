@@ -3,6 +3,7 @@ const config = require('../../lib/configLoader');
 const gulp = require('gulp');
 const path = require('path');
 const watch = require('gulp-watch');
+const gulpSequence = require('gulp-sequence');
 const getEnabledTasks = require('../../lib/getEnabledTasks');
 
 const watchTask = () => {
@@ -19,7 +20,17 @@ const watchTask = () => {
             const glob = path.join(config.root.src, task.src, '**/*.{' + task.extensions.join(',') + '}');
 
             watch(glob, () => {
-                require('../' + taskName)();
+                const task = require('../' + taskName);
+
+                if (taskName === 'css') {
+                    const cssWatchTask = () => {
+                        gulpSequence('css', 'emails')();
+                    };
+
+                    cssWatchTask();
+                } else {
+                    task();
+                }
             });
         }
     });

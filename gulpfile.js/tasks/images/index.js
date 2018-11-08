@@ -15,8 +15,8 @@ const imagesTask = () => {
     const tasks = getFolders(config.root.src).map((folder) => {
         const paths = {
             src: [
-                path.join(config.root.src, folder, config.tasks.images.src, '/**/*.{' + config.tasks.images.extensions + '}'),
-                path.join(config.root.src, 'core', config.tasks.images.src, '/**/*.{' + config.tasks.images.extensions + '}')
+                path.join(config.root.src, folder, config.tasks.images.childSrc, '/**/*.{' + config.tasks.images.extensions + '}'),
+                path.join(config.root.src, 'core', config.tasks.images.childSrc, '/**/*.{' + config.tasks.images.extensions + '}')
             ],
             dest: path.join(config.root.dest, folder, config.tasks.images.dest)
         };

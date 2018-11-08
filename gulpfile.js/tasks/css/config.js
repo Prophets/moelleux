@@ -1,5 +1,6 @@
 module.exports = {
-    'src': 'sass',
+    'src': './',
+    'childSrc': 'sass',
     'dest': 'css',
     'sass': {
         'includePaths': [

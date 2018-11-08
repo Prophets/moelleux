@@ -83,7 +83,7 @@ const emailsTask = () => {
 
         const subtasks = getLanguages(folder).map((lang) => {
             const paths = {
-                src: [path.join(config.root.src, folder, 'templates',  '/**/*.{' + config.tasks.emails.extensions + '}'), exclude],
+                src: [path.join(config.root.src, folder, config.tasks.emails.childSrc,  '/**/*.{' + config.tasks.emails.extensions + '}'), exclude],
                 dest: path.join(config.root.dest, config.tasks.emails.dest, folder, '/')
             };
 
@@ -91,7 +91,7 @@ const emailsTask = () => {
                 .pipe(data(getData(folder, lang)))
                 .on('error', handleErrors)
                 .pipe(render({
-                    path: [path.join(config.root.src, folder, 'templates'), path.join(config.root.src, 'core/templates')],
+                    path: [path.join(config.root.src, folder, config.tasks.emails.childSrc), path.join(config.root.src, 'core/templates')],
                     envOptions: {
                         watch: false
                     },
