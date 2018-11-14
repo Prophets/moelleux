@@ -5,7 +5,6 @@ If you are using gulp-starter as a standalone static site builder, this is where
 
 - `data:` contains a `global.json` file where you can put data that will be made accessible to your templates
 - `layouts:` A basic Nunjucks layout file
-- `macros:` Contains a helpers file with an `icon` macro for use with the `svgSprite` task.
 - `index.html:` Hello world! Uses `layouts/default.html`.
 
 ## Tasks and Files
@@ -13,8 +12,6 @@ If you are using gulp-starter as a standalone static site builder, this is where
 gulpfile.js/tasks/html
 ```
 Robust templating with [Nunjucks](https://mozilla.github.io/nunjucks/). Nunjucks is nearly identical in syntax to Twig (PHP), and replaces Swig (and Twig-like js templating language), which is no longer maintained.
-
-A global data file is set up at [src/html/data/global.json](src/html/data/global.json), is read in by the `html` task, and exposes the properties to your html templates. For example {{title}} is used in the `layouts/default.html` layout.
 
 ## Nunjucks syntax
 

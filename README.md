@@ -1,15 +1,15 @@
 # Moelleux
 
-TODO: update the readme documentation
+The code in this project is to be used as the base for a client based e-mail framework project.
 
-The code in this project is to be used as the base for "every" project.
-
-The purpose of this project is that we reach a singular workflow for our FE projects.
+The purpose of this project is that we reach a singular workflow for our e-mail templates.
 
 
 ## Getting started
 
-First install dameblanche
+<!-- TODO: Implement clean setup to start email framework
+
+First install Moelleux
 
 ```bash
 curl -o /usr/local/bin/dameblanche https://raw.githubusercontent.com/Prophets/dameblanche/develop/bash/dameblanche &&  chmod 755 /usr/local/bin/dameblanche
@@ -21,7 +21,7 @@ Create a new project with:
 dameblanche project-folder-name
 ```
 
-Or you can run dameblanche within an empty directory
+Or you can run Moelleux within an empty directory
 
 ```bash
 mkdir project-folder-name
@@ -35,20 +35,19 @@ Or use -n flag to disable git initialisation
 dameblanche  -n project-folder-name
 ```
 
-Dameblanche clones from the master branch by default but it is possible to use another branch
+Moelleux clones from the master branch by default but it is possible to use another branch
 
 ```bash
 dameblanche  -b 13-prefix-commit-messages-with-branch-name project-folder-name
 ```
 
+-->
 
 Features | Tools Used
 ------ | -----
 **CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), Source Maps
-**JavaScript** | [Babel](http://babeljs.io/), [Webpack](http://webpack.github.io/)
 **HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data)
 **Images** | Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)
-**Symbols** | Auto-generated [SVG Sprites](https://github.com/w0rm/gulp-svgstore)
 **Live Updating** | [BrowserSync](http://www.browsersync.io/), [Webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware), [Webpack Hot Middleware](https://github.com/glenjamin/webpack-hot-middleware)
 **Production Builds** | JS and CSS are [uglified](https://github.com/mishoo/UglifyJS2) and [minified](http://cssnano.co/), [filename md5 hashing (reving)](https://github.com/sindresorhus/gulp-rev), [file size reporting](https://github.com/jaysalvat/gulp-sizereport)
 
@@ -96,12 +95,9 @@ Not all configuration is exposed here. For advanced task configuration, you can 
 ## Asset Details
 A `README.md` with details about each asset type are available in their respective folders in the `src` directory:
 
-- [JavaScript](src/js)
 - [Stylesheets](src/sass)
 - [HTML](src/templates)
 - [Images](src/images)
-- [SVG Sprite](src/symbols)
-- [Static Files (favicons, app icons, etc.)](src/static)
 
 This will compile revisioned and compressed files to `./build`. 
 
