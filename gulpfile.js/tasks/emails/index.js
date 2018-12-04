@@ -23,6 +23,11 @@ const rename = require('gulp-rename');
 const flatten = require('lodash/flatten');
 const getFolders = require('../../lib/getFolders');
 
+const registerComponent = require('mjml-core').registerComponent;
+const MjImageProphets = require('../../components/MjImageProphets');
+
+registerComponent(MjImageProphets.default);
+
 const getLanguages = (folder) => {
     let location = './' + folder;
 
@@ -103,7 +108,7 @@ const emailsTask = () => {
                 .pipe(inlinesource(inlineOptions))
                 .on('error', handleErrors)
                 .pipe(mjml(mjmlEngine, { minify: config.tasks.emails.mjml.minify }))
-                .on('error', handleErrors)
+                .on('error:', handleErrors)
                 .pipe(rename({suffix: '-' + lang}))
                 .on('error', handleErrors)
                 .pipe(gulp.dest(paths.dest))
