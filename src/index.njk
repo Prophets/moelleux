@@ -46,7 +46,18 @@
     <body>
         <h1>E-mail template framework overview</h1>
         <div>
-            {% overview %}{% endoverview %}
+            <ul>
+            {% for item in data %}
+                <li>{{ item.dir }}</li>
+                <ul>
+                    {% for file in item.files %}
+                    <li>
+                        <a href="{{ item.dir }}/{{ file }}">{{ file }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+            </ul>
         </div>
     </body>
 </html>

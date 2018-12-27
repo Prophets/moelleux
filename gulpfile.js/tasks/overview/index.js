@@ -4,10 +4,30 @@ if (!config.tasks.overview) return;
 
 const gulp = require('gulp');
 const render = require('gulp-nunjucks-render');
+const data = require('gulp-data');
 const nunjucks = require('nunjucks');
 const fs = require('fs');
 const path = require('path');
+const handleErrors = require('../../lib/handleErrors');
+const customNotifier = require('../../lib/customNotifier');
 const getFolders = require('../../lib/getFolders');
+
+const getData = () => {
+    const dirs = getFolders(config.root.dest);
+
+    let allData = {};
+    allData.data = [];
+
+    dirs.forEach((dir) => {
+        const files = fs.readdirSync(path.join(config.root.dest, dir)).filter((file) => {
+            return fs.statSync(path.join(config.root.dest, dir, file)).isFile();
+        });
+
+        allData.data.push({'dir': dir, 'files': files});
+    });
+
+    return allData;
+};
 
 const overviewTask = () => {
     const paths = {
@@ -16,64 +36,19 @@ const overviewTask = () => {
     }
 
     return gulp.src(paths.src)
+        .pipe(data(getData()))
+        .on('error', handleErrors)
         .pipe(render({
             path: path.src,
             envOptions: {
                 watch: false
-            },
-            manageEnv(env) {
-                env.addExtension('overview', new Overview());
             }
         }))
+        .on('error', handleErrors)
         .pipe(gulp.dest(config.root.dest))
+        .pipe(customNotifier({ title: 'Overview created.' }));
 }
 
 gulp.task('overview', overviewTask);
 
 module.exports = overviewTask;
-
-function Overview() {
-    this.tags = ['overview'];
-
-    this.parse = function(parser, nodes, lexer) {
-        const tok = parser.nextToken();
-
-        const args = parser.parseSignature(null, true);
-        parser.advanceAfterBlockEnd(tok.value);
-
-        const body = parser.parseUntilBlocks('error', 'endoverview');
-        let errorBody = null;
-
-        if (parser.skipSymbol('error')) {
-            parser.skip(lexer.TOKEN_BLOCK_END);
-            errorBody = parser.parseUntilBlocks('endoverview');
-        }
-
-        parser.advanceAfterBlockEnd();
-
-        return new nodes.CallExtension(this, 'run', args, [body, errorBody]);
-    }
-
-    this.run = function(context, url, body, errorBody) {
-        let output = '<ul>';
-        const dirs = getFolders(config.root.dest);
-
-        dirs.forEach((dir) => {
-            output += '<li>' + dir + '</li>';
-            output += '<ul>';
-
-            const files = fs.readdirSync(path.join(config.root.dest, dir)).filter((file) => {
-                return fs.statSync(path.join(config.root.dest, dir, file)).isFile();
-            });
-            files.forEach((file) => {
-                output += '<li><a href="' + dir + '/' + file + '">' + file + '</a></li>';
-            });
-
-            output += '</ul>';
-        });
-
-        output += '</ul>';
-
-        return new nunjucks.runtime.SafeString('<div>' + output + '</div>');
-    }
-}
