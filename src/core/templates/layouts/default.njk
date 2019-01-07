@@ -1,16 +1,39 @@
 <mjml>
     <mj-head>
-        {% block head %}{% endblock %}
-        <mj-style src="../../../public/{{ folder }}/css/queries.css" cssinline></mj-style>
-        <mj-style src="../../../public/{{ folder }}/css/styles.css" cssinline inline="inline"></mj-style>
+        <mj-title>{{ content.title|safe }}</mj-title>
+
+        <mj-attributes>
+            {% block attributes %}
+                <mj-all font-family="Helvetica, Arial, sans-serif"></mj-all>
+                <mj-button target="_blank"></mj-button>
+            {% endblock %}
+        </mj-attributes>
+
+        {% block fonts %}
+            <!-- <mj-font name="FontName" href="https://recurring-5143.kxcdn.com/client/fonts/path.css" /> -->
+        {% endblock %}
+
+        {% block styles %}
+            <mj-style
+                src="../../../public/{{ folder }}/css/queries.css"
+                cssinline
+            ></mj-style>
+            <mj-style
+                src="../../../public/{{ folder }}/css/styles.css"
+                cssinline
+                inline="inline"
+            ></mj-style>
+        {% endblock %}
     </mj-head>
     <mj-body>
         {% include 'partials/supheader.njk' %}
 
-        {% for block in content.blocks %}
-            {% set data = block.data %}
-            {% include '../partials/' + block.type + '.njk' %}
-        {% endfor %}
+        {% block blocks %}
+            {% for block in content.blocks %}
+                {% set data = block.data %}
+                {% include '../partials/' + block.type + '.njk' %}
+            {% endfor %}
+        {% endblock %}
 
         {% include 'partials/footer.njk' %}
     </mj-body>
