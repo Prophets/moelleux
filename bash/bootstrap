@@ -4,10 +4,10 @@ initGit=true
 
 while getopts "b:n" opt
 do
-    case "$opt" in
-        "b") branch="$OPTARG" ;;
-        "n") initGit=false ;;
-    esac
+  case "$opt" in
+    "b") branch="$OPTARG" ;;
+    "n") initGit=false ;;
+  esac
 done
 shift $(($OPTIND - 1))
 
@@ -21,25 +21,25 @@ if [ ! -z "$create" ]
 fi
 
 #clone the git project
-git clone -b "$branch" --depth=1 git@github.com:Prophets/moeulleux.git .
-#remove .git
+git clone -b "$branch" --depth=1 git@github.com:Prophets/moelleux.git .
+# remove moelleux .git
 rm -rf .git
 
 if $initGit
     then
-        #initialize new .git
+        # initialize new .git
         git init
-        #add commit message hook
+        # add commit message hook
         cp git/hooks/prepare-commit-msg .git/hooks/prepare-commit-msg
+        # remove git (template hooks) and bash folder
 fi
 
-#remove git (template hooks) and bash folder
 rm -rf git
 rm -rf bash
 
 if $initGit
     then
-        #create inital commit
+        # create initial commit
         git add -A
-        git commit -m 'inital commit'
+        git commit -m 'initial commit'
 fi
