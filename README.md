@@ -12,13 +12,13 @@ The purpose of this project is that we reach a singular workflow for our e-mail 
 First install Moelleux
 
 ```bash
-curl -o /usr/local/bin/dameblanche https://raw.githubusercontent.com/Prophets/dameblanche/develop/bash/dameblanche &&  chmod 755 /usr/local/bin/dameblanche
+curl -o /usr/local/bin/moelleux https://raw.githubusercontent.com/Prophets/moelleux/develop/bash/moelleux &&  chmod 755 /usr/local/bin/moelleux
 ```
 
 Create a new project with:
 
 ```bash
-dameblanche project-folder-name
+moelleux project-folder-name
 ```
 
 Or you can run Moelleux within an empty directory
@@ -26,25 +26,26 @@ Or you can run Moelleux within an empty directory
 ```bash
 mkdir project-folder-name
 cd project-folder-name
-dameblanche
+moelleux
 ```
 
 Or use -n flag to disable git initialisation
 
 ```bash
-dameblanche  -n project-folder-name
+moelleux  -n project-folder-name
 ```
 
 Moelleux clones from the master branch by default but it is possible to use another branch
 
 ```bash
-dameblanche  -b 13-prefix-commit-messages-with-branch-name project-folder-name
+moelleux  -b 13-prefix-commit-messages-with-branch-name project-folder-name
 ```
 
 -->
 
 Features | Tools Used
 ------ | -----
+**MJML** | Responsive email framework (https://github.com/mjmlio/mjml)
 **CSS** | [Sass](http://sass-lang.com/) ([Libsass](http://sass-lang.com/libsass) via [node-sass](https://github.com/sass/node-sass)), [Autoprefixer](https://github.com/postcss/autoprefixer), Source Maps
 **HTML** | [Nunjucks](https://mozilla.github.io/nunjucks/), [gulp-data](https://github.com/colynb/gulp-data)
 **Images** | Compression with [imagemin](https://www.npmjs.com/package/gulp-imagemin)
@@ -54,7 +55,7 @@ Features | Tools Used
 ## Usage
 Make sure Node is installed. We recommend using [NVM](https://github.com/creationix/nvm) to manage versions. 
 
-This has been tested on Node `7.10.0`, and should work on newer versions as well. [File an issue](https://github.com/Prophets/dameblanche/issues) if it doesn't!
+This has been tested on Node `v8.12.0`, and should work on newer versions as well. [File an issue](https://github.com/Prophets/dameblanche/issues) if it doesn't!
 
 ### Install Dependencies
 ```bash
@@ -80,7 +81,7 @@ To run any other existing task, simply add the task name after the `yarn run sta
 yarn run build
 ```
 
-This will compile revisioned and compressed files to `./build`. 
+This will compile revisioned and compressed files to `./build`. This will also upload all assets (images) to a destination on the cdn defined in the env file.
 
 ## Configuration
 Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. Use this file to update paths to match the directory structure of your project, and to adjust task options.
