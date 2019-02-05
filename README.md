@@ -7,12 +7,10 @@ The purpose of this project is that we reach a singular workflow for our e-mail 
 
 ## Getting started
 
-<!-- TODO: Implement clean setup to start email framework
-
 First install Moelleux
 
 ```bash
-curl -o /usr/local/bin/moelleux https://raw.githubusercontent.com/Prophets/moelleux/develop/bash/moelleux &&  chmod 755 /usr/local/bin/moelleux
+curl -o /usr/local/bin/moelleux https://raw.githubusercontent.com/Prophets/moelleux/master/bash/moelleux && chmod 755 /usr/local/bin/moelleux
 ```
 
 Create a new project with:
@@ -41,7 +39,6 @@ Moelleux clones from the master branch by default but it is possible to use anot
 moelleux  -b 13-prefix-commit-messages-with-branch-name project-folder-name
 ```
 
--->
 
 Features | Tools Used
 ------ | -----
