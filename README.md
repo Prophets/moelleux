@@ -1,7 +1,6 @@
 # Moelleux
 
 The code in this project is to be used as the base for a client based e-mail framework project.
-
 The purpose of this project is that we reach a singular workflow for our e-mail templates.
 
 
@@ -52,7 +51,7 @@ Features | Tools Used
 ## Usage
 Make sure Node is installed. We recommend using [NVM](https://github.com/creationix/nvm) to manage versions. 
 
-This has been tested on Node `v8.12.0`, and should work on newer versions as well. [File an issue](https://github.com/Prophets/dameblanche/issues) if it doesn't!
+This has been tested on Node `v8.12.0`, and should work on newer versions as well. [File an issue](https://github.com/Prophets/moelleux/issues) if it doesn't!
 
 ### Install Dependencies
 ```bash
@@ -79,6 +78,14 @@ yarn run build
 ```
 
 This will compile revisioned and compressed files to `./build`. This will also upload all assets (images) to a destination on the cdn defined in the env file.
+
+### Upload assets to CDN
+```bash
+yarn run upload
+```
+
+This will upload all assets (image and css files) to the destination on the cdn as defined in your env file. This way emails can be tested in your prefered email testing tool.
+
 
 ## Configuration
 Directory and top level settings are convienently exposed in `gulpfile.js/config.json`. Use this file to update paths to match the directory structure of your project, and to adjust task options.
