@@ -1,27 +1,31 @@
 const config = require('../../lib/configLoader');
 
 if (!config.tasks.emails) return;
+require("@babel/register")({
+    only: [
+        function (file) {
+            return file.indexOf('render.js') > 0 || file.indexOf('/src/') > 0 ;
+        }
+    ],
+});
 
 const browserSync = require('browser-sync');
 const data = require('gulp-data');
 const gulp = require('gulp');
-const gulpif = require('gulp-if');
 const merge = require('merge-stream');
-const htmlmin = require('gulp-htmlmin');
-const render = require('gulp-nunjucks-render');
-const gulpSequence = require('gulp-sequence');
 const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const handleErrors = require('../../lib/handleErrors');
 const customNotifier = require('../../lib/customNotifier');
 const inlinesource = require('gulp-inline-source');
-const mjml = require('gulp-mjml');
-const mjmlEngine = require('mjml').default;
 const fileExists = require('file-exists');
 const rename = require('gulp-rename');
 const flatten = require('lodash/flatten');
 const getFolders = require('../../lib/getFolders');
+const PluginError = require('plugin-error');
+const replaceExtension = require('replace-ext');
+const through = require('through2');
 
 const registerComponent = require('mjml-core').registerComponent;
 const MjImageProphets = require('../../components/MjImageProphets');
@@ -58,6 +62,30 @@ const getData = (folder, lang) => {
     return allData;
 };
 
+const reactMjmlRender = function (options) {
+    return through.obj(function (file, enc, cb) {
+        try{
+            const render = require('./render').default;
+            const { html, error } = render(file.path, file.data);
+            if(html) {
+                file.contents = Buffer.from(html);
+
+                file.path = replaceExtension(file.path, '.html')
+
+                this.push(file);
+                cb();
+            }
+            if (error) {
+                this.emit('error', new PluginError('gulp-mjml-react', error, {fileName: file.path}));
+                cb();
+            }
+        } catch(e) {
+            this.emit('error', new PluginError('gulp-mjml-react', e, {fileName: file.path}));
+            cb();
+        }
+    });
+}
+
 const emailsTask = () => {
     const exclude = path.normalize('!**/{' + config.tasks.emails.excludeFolders.join(',') + '}/**');
 
@@ -93,22 +121,12 @@ const emailsTask = () => {
             };
 
             return gulp.src(paths.src)
-                .pipe(data(getData(folder, lang)))
+                .pipe(data({...getData(folder, lang), imagesDestination}))
                 .on('error', handleErrors)
-                .pipe(render({
-                    path: [path.join(config.root.src, folder, config.tasks.emails.childSrc), path.join(config.root.src, 'core/templates')],
-                    envOptions: {
-                        watch: false
-                    },
-                    manageEnv(env) {
-                        env.addGlobal('imagePath', imagesDestination);
-                    }
-                }))
+                .pipe(reactMjmlRender())
                 .on('error', handleErrors)
                 .pipe(inlinesource(inlineOptions))
                 .on('error', handleErrors)
-                .pipe(mjml(mjmlEngine, { minify: config.tasks.emails.mjml.minify }))
-                .on('error:', handleErrors)
                 .pipe(rename({suffix: '-' + lang}))
                 .on('error', handleErrors)
                 .pipe(gulp.dest(paths.dest))

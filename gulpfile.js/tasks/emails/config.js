@@ -6,8 +6,8 @@ module.exports = {
     'htmlmin': {
         'collapseWhitespace': true
     },
-    'extensions': ['njk', 'yml', 'yaml'],
-    'excludeFolders': ['core', 'layouts', 'partials', 'shared', 'macros', 'data'],
+    'extensions': ['js', 'yml', 'yaml'],
+    'excludeFolders': ['core', 'layouts', 'partials', 'shared', 'macros', 'data', 'components'],
     'inlinesource': {
         'attribute': 'cssinline',
         'compress': false
