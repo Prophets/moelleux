@@ -3,6 +3,10 @@ logo:
     url: 'http://www.prophets.be'
     img: 'logo.png'
     alt: 'Alt Logo'
+fonts:
+    -
+        name: 'gill-sans-nova'
+        href: 'https://use.typekit.net/ppq2lhl.css'
 footer:
     legal: 'legal'
     unsubscribe: 'unsubscribe'
