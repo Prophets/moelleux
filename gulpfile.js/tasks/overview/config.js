@@ -2,5 +2,5 @@ module.exports = {
     'notWatchable': true,
     'src': './',
     'dest': './',
-    'mainFile': 'index.js'
+    'mainFile': 'index.njk'
 }

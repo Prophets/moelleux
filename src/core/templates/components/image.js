@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     MjmlImage
 } from 'mjml-react';
