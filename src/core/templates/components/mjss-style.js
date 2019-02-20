@@ -10,26 +10,28 @@ const MjssStyle = ({children, folder, src}) => {
 
     return <Mjml.MjmlAttributes>
         {
-            map(css.parse(style).stylesheet.rules, (style, selector) => {
-                const selectorFirstChar = style.selectors[0][0];
-                const types = {
-                    '.': Mjml.MjmlClass,
-                    '*': Mjml.MjmlAll
-                }
+            map(css.parse(style).stylesheet.rules, (style) => {
+                return style.selectors.map((selector) => {
+                    const selectorFirstChar = selector[0];
+                    const types = {
+                        '.': Mjml.MjmlClass,
+                        '*': Mjml.MjmlAll
+                    }
 
-                const Type = types[selectorFirstChar] || Mjml[upperFirst(camelCase(style.selectors[0]))];
+                    const Type = types[selectorFirstChar] || Mjml[upperFirst(camelCase(selector))];
 
-                const props = {};
+                    const props = {};
 
-                if(selectorFirstChar === '.') {
-                    props.name = style.selectors[0].slice(1);
-                }
+                    if(selectorFirstChar === '.') {
+                        props.name = selector.slice(1);
+                    }
 
-                style.declarations.forEach((style) => {
-                    props[camelCase(style.property)] = style.value;
-                });
+                    style.declarations.forEach((style) => {
+                        props[camelCase(style.property)] = style.value;
+                    });
 
-                return <Type {...props} />
+                    return <Type {...props} />
+                })
             })
         }
     </Mjml.MjmlAttributes>

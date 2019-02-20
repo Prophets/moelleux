@@ -2,12 +2,13 @@ import {
     MjmlText,
 } from 'mjml-react';
 import Image from '../components/image';
+import { H3, P } from '../components/typo';
 
 const Article = () => (
     <>
-        <MjmlText>Title</MjmlText>
+        <H3>H3 Title</H3>
         <Image fullWidth={true} src="header.jpg" />
-        <MjmlText>Description</MjmlText>
+        <P>Description <strong>strong</strong></P>
     </>
 );
 

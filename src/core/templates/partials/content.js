@@ -1,21 +1,23 @@
 import {
     MjmlSection,
     MjmlButton,
-    MjmlImage,
-    MjmlText,
     MjmlColumn
 } from 'mjml-react';
+import { H1, P, H2 } from '../components/typo';
 
 
 const Content = ({intro, button, outro, img}) => (
     <MjmlSection>
         <MjmlColumn>
-            <MjmlText>{intro}</MjmlText>
+            <H1>H1 title</H1>
+            <P>{intro}</P>
+            <H2>H2 title</H2>
+            <P>{intro}</P>
             {
                 button &&
                 <MjmlButton href={button.url}>{button.txt}</MjmlButton>
             }
-            <MjmlText>{outro}</MjmlText>
+            <P>{outro}</P>
         </MjmlColumn>
     </MjmlSection>
 );

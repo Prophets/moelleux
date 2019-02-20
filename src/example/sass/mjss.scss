@@ -1,12 +1,13 @@
 @import 'core/config';
 @import 'core/reset';
+@import 'core/typo';
 
 .sup-header {
-    background-color: #eee;
+    background-color: $gray-light;
 }
 
 .footer {
-    background-color: #000;
+    background-color: $gray-dark;
 
     &__text {
         color: #fff;
