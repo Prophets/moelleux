@@ -4,8 +4,8 @@ blocks:
         type: 'header'
         data:
             img:
-                mobile: 'example.png'
-                desktop: 'example.png'
+                mobile: 'header.jpg'
+                desktop: 'header.jpg'
                 alt: 'Lorem ipsum alt.'
             url: 'https://www.prophets.be'
     -
@@ -17,4 +17,15 @@ blocks:
                 txt: 'Lorem ipsum button'
                 url: 'https://www.prophets.be/'
             outro: 'Lorem ipsum outro.'
+articles:
+    -
+        title: 'test'
+    -
+        title: 'test'
+    -
+        title: 'test'
+    -
+        title: 'test'
+    -
+        title: 'test'
 

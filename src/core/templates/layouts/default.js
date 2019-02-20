@@ -20,6 +20,8 @@ import Footer from '../partials/footer';
 import CssStyle from '../components/css-style';
 import MjssStyle from '../components/mjss-style';
 import MailContext from '../context/mail';
+import Grid from '../components/grid';
+import Article from '../partials/article';
 
 const DefaultHead = ({content, attributes, core, folder}) => (
     <>
@@ -51,6 +53,42 @@ const DefaultLayout = (props) => {
                         return <Block {...data} />
                     })
                 }
+                <Grid columns="3" justify="right">
+                    {
+                        props.content.articles.map(article => (
+                            <MjmlColumn>
+                                <Article/>
+                            </MjmlColumn>
+                        ))
+                    }
+                </Grid>
+                <Grid columns="3" justify="left">
+                    {
+                        props.content.articles.map(article => (
+                            <MjmlColumn>
+                                <Article/>
+                            </MjmlColumn>
+                        ))
+                    }
+                </Grid>
+                <Grid columns="3" justify="stretch">
+                    {
+                        props.content.articles.map(article => (
+                            <MjmlColumn>
+                                <Article/>
+                            </MjmlColumn>
+                        ))
+                    }
+                </Grid>
+                <Grid columns="3" justify="center">
+                    {
+                        props.content.articles.map(article => (
+                            <MjmlColumn>
+                                <Article/>
+                            </MjmlColumn>
+                        ))
+                    }
+                </Grid>
                 { props.children }
                 <Footer />
             </MjmlBody>

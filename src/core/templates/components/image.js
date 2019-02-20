@@ -3,10 +3,11 @@ import {
 } from 'mjml-react';
 import MailContext from '../context/mail';
 
-const Image = ({ src, srcset, ...otherProps }) => (
+const Image = ({ src, srcset, cssClass, fullWidth, ...otherProps }) => (
     <MailContext.Consumer>
         { ({data}) => {
             return <MjmlImage
+                cssClass={ (cssClass || '') + ( fullWidth ? ' image--full-width' : '') }
                 src={data.imagesDestination +'/'+ src}
                 srcset={srcset && srcset.trim().split(',').filter(item => item.trim().length !== 0).map((item)=> {
                     const parts = item.trim().split(' ').filter(item => item !== '');
@@ -15,8 +16,6 @@ const Image = ({ src, srcset, ...otherProps }) => (
                 {...otherProps} />
         }}
     </MailContext.Consumer>
-
 )
 
 export default Image;
-

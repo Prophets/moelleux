@@ -17,3 +17,15 @@ blocks:
                 txt: 'Lorem ipsum button'
                 url: 'https://www.prophets.be/'
             outro: 'Lorem ipsum outro.'
+articles:
+    -
+        title: 'test'
+    -
+        title: 'test'
+    -
+        title: 'test'
+    -
+        title: 'test'
+    -
+        title: 'test'
+
