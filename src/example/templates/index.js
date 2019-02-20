@@ -9,11 +9,6 @@ const overrideHead = (DefaultHead) => {
     return (props) => (
         <>
             <DefaultHead {...props}/>
-            <MjmlStyle inline={true}>{`
-                body {
-                    background: green;
-                }
-            `}</MjmlStyle>
         </>
     );
 }

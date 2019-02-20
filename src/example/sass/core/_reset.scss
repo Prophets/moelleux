@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+mjml-text {
+    padding: $padding;
+}
+
+mjml-image {
+    padding: 0;
+}
+
+mjml-wrapper {
+    full-width: 'full-width';
+}
+
+mjml-section {
+    padding: $padding 0;
+}
+
+mjml-column {
+    padding: 0;
+}
+
+mjml-button {
+    target: _blank;
+    background-color: #fff;
+    color: #000;
+    border-radius: 3px;
+    text-transform: uppercase;
+    border: 1px solid #000;
+}

@@ -10,27 +10,28 @@ import {
     MjmlText,
     MjmlFont,
     MjmlAttributes,
-    MjmlStyle
+    MjmlStyle,
+    MjmlAll,
+    MjmlButton,
+    MjmlClass
 } from 'mjml-react';
 import SupHeader from '../partials/supheader';
 import Footer from '../partials/footer';
-import Style from '../components/style';
+import CssStyle from '../components/css-style';
+import MjssStyle from '../components/mjss-style';
 import MailContext from '../context/mail';
 
 const DefaultHead = ({content, attributes, core, folder}) => (
     <>
         <MjmlTitle>{ content.title }</MjmlTitle>
 
-        <MjmlAttributes>
-            <mj-all font-family="Helvetica, Arial, sans-serif"></mj-all>
-            <mj-button target="_blank"></mj-button>
-            { attributes }
-        </MjmlAttributes>
+        <MjssStyle folder={folder} src={`/css/mjss.css`} />
+
         { (core.fonts || []).map(({name, href}, key) => (
             <MjmlFont key={key} href={href} name={name}/>
         )) }
-        <Style folder={folder} src={`/css/styles.css`} inline={true} />
-        <Style folder={folder} src={`/css/queries.css`} inline={false} />
+        <CssStyle folder={folder} src={`/css/styles.css`} inline={true} />
+        <CssStyle folder={folder} src={`/css/queries.css`} inline={false} />
     </>
 );
 

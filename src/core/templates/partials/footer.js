@@ -1,15 +1,18 @@
 import {
     MjmlSection,
     MjmlColumn,
-    MjmlText
+    MjmlText,
+    MjmlWrapper
 } from 'mjml-react';
 
 const Footer = () => (
-    <MjmlSection>
-        <MjmlColumn>
-            <MjmlText>FOOTER CONTENT</MjmlText>
-        </MjmlColumn>
-    </MjmlSection>
+    <MjmlWrapper mjClass="footer">
+        <MjmlSection>
+            <MjmlColumn>
+                <MjmlText mjClass="footer__text">FOOTER CONTENT</MjmlText>
+            </MjmlColumn>
+        </MjmlSection>
+    </MjmlWrapper>
 );
 
 export default Footer;

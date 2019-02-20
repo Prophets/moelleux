@@ -1,0 +1,19 @@
+@import 'core/config';
+@import 'core/reset';
+
+.sup-header {
+    background-color: #eee;
+}
+
+.footer {
+    background-color: #000;
+
+    &__text {
+        color: #fff;
+    }
+}
+
+.padding-y-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+}

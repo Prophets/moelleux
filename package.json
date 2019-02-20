@@ -50,6 +50,7 @@
     "vinyl-ftp": "^0.6.1"
   },
   "dependencies": {
+    "css": "^2.2.4",
     "mjml": "^4.3.1",
     "mjml-react": "^1.0.46",
     "react": "^16.8.2",

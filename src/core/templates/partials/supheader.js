@@ -1,15 +1,18 @@
 import {
     MjmlSection,
     MjmlText,
-    MjmlColumn
+    MjmlColumn,
+    MjmlWrapper
 } from 'mjml-react';
 
 const SupHeader = () => (
-    <MjmlSection padding="0">
-        <MjmlColumn>
-            <MjmlText>sup header</MjmlText>
-        </MjmlColumn>
-    </MjmlSection>
+    <MjmlWrapper mjClass="sup-header">
+        <MjmlSection>
+            <MjmlColumn>
+                <MjmlText>sup header</MjmlText>
+            </MjmlColumn>
+        </MjmlSection>
+    </MjmlWrapper>
 );
 
 export default SupHeader;
