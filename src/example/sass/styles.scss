@@ -1,0 +1,32 @@
+.grid {
+    &__unresponsive {
+        text-align: center !important;
+    }
+
+    &--v-align {
+        &-middle {
+            vertical-align: middle !important;
+        }
+
+        &-middle > table > tbody > tr > td {
+            vertical-align: middle !important;
+        }
+
+        &-top {
+            vertical-align: top !important;
+        }
+
+        &-top > table > tbody > tr > td {
+            vertical-align: top !important;
+        }
+
+        &-bottom {
+            vertical-align: bottom !important;
+        }
+
+        &-bottom > table > tbody > tr > td {
+            vertical-align: bottom !important;
+        }
+    }
+
+}

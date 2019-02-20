@@ -59,7 +59,7 @@ const DefaultLayout = (props) => {
                         <H2>Grid columns 3 justify right</H2>
                     </MjmlColumn>
                 </MjmlSection>
-                <Grid columns="3" justify="right">
+                <Grid columns="3" justifyContent="right">
                     {
                         props.content.articles.map(article => (
                             <MjmlColumn>
@@ -73,7 +73,7 @@ const DefaultLayout = (props) => {
                         <H2>Grid columns 3 justify left</H2>
                     </MjmlColumn>
                 </MjmlSection>
-                <Grid columns="3" justify="left">
+                <Grid columns="3" justifyContent="left">
                     {
                         props.content.articles.map(article => (
                             <MjmlColumn>
@@ -87,7 +87,7 @@ const DefaultLayout = (props) => {
                         <H2>Grid columns 3 justify stretch</H2>
                     </MjmlColumn>
                 </MjmlSection>
-                <Grid columns="3" justify="stretch">
+                <Grid columns="3" justifyContent="stretch">
                     {
                         props.content.articles.map(article => (
                             <MjmlColumn>
@@ -101,11 +101,27 @@ const DefaultLayout = (props) => {
                         <H2>Grid columns 3 justify center</H2>
                     </MjmlColumn>
                 </MjmlSection>
-                <Grid columns="3" justify="center">
+                <Grid columns="4" justifyContent="center">
                     {
                         props.content.articles.map(article => (
                             <MjmlColumn>
                                 <Article/>
+                            </MjmlColumn>
+                        ))
+                    }
+                </Grid>
+
+                <MjmlSection>
+                    <MjmlColumn>
+                        <H2>Unresponsive Grid columns 3 justify center</H2>
+                    </MjmlColumn>
+
+                </MjmlSection>
+                <Grid columns="3" responsive={false} justifyContent="center" verticalAlign="middle">
+                    {
+                        props.content.logos.map(logo => (
+                            <MjmlColumn>
+                                <MjmlImage src={logo.src} />
                             </MjmlColumn>
                         ))
                     }

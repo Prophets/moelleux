@@ -1,17 +1,17 @@
-title: 'Example e-mail title fr'
+title: 'Example e-mail title nl'
 blocks:
     -
         type: 'header'
         data:
             img:
-                mobile: 'example.png'
-                desktop: 'example.png'
+                mobile: 'header.jpg'
+                desktop: 'header.jpg'
                 alt: 'Lorem ipsum alt.'
             url: 'https://www.prophets.be'
     -
         type: 'content'
         data:
-            intro: 'Lorem ipsum intro.'
+            intro: 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.'
             button:
                 enabled: true
                 txt: 'Lorem ipsum button'
@@ -29,3 +29,14 @@ articles:
     -
         title: 'test'
 
+logos:
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-beru.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-champion.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-ferodo.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-jurid.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-moog.gif'

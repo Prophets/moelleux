@@ -29,3 +29,14 @@ articles:
     -
         title: 'test'
 
+logos:
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-beru.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-champion.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-ferodo.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-jurid.gif'
+    -
+        src:  'https://recurring-5143.kxcdn.com/FED00020/template/newsletter/images/logo-footer-moog.gif'

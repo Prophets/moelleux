@@ -1,7 +1,7 @@
 import {
     MjmlSection,
     MjmlColumn,
-    MjmlText
+    MjmlGroup
 } from 'mjml-react';
 import chunk from 'lodash/chunk';
 import times from 'lodash/times';
@@ -26,9 +26,7 @@ const justifyResolve = (value) => {
     return 'left';
 };
 
-const maxWidth = 600;
-
-const calcWidths = (columns, gutter) => {
+const calcWidths = (columns, gutter, maxWidth) => {
     const spacerWidth = (gutter/maxWidth) * 100;
     const spacersTotalWidth = (columns - 1) * spacerWidth;
 
@@ -40,43 +38,48 @@ const calcWidths = (columns, gutter) => {
         spacerWidth
     }
 }
-const Grid = ({columns = 2, gutter= 10, children, justify = 'left' }) => {
+const Grid = ({columns = 2, gutter= 10, children, justifyContent = 'left', responsive = true, maxWidth = 600, verticalAlign = 'top' }) => {
     return <>
         {
             chunk(React.Children.toArray(children), columns).map((row, key) => {
                 let newRow = row;
                 let totalColumns = columns;
-                if( justifyResolve(justify) === 'stretch' ) {
+                if( justifyResolve(justifyContent) === 'stretch' ) {
                     totalColumns = row.length;
                 }
-                const { columnWidth, spacerWidth } = calcWidths(totalColumns, gutter);
+                const { columnWidth, spacerWidth } = calcWidths(totalColumns, gutter, maxWidth);
 
-                if( justifyResolve(justify) === 'right') {
+                if( justifyResolve(justifyContent) === 'right') {
                     newRow = fillUp(columns, row).concat(row);
                 }
 
-                if( justifyResolve(justify) === 'left') {
+                if( justifyResolve(justifyContent) === 'left') {
                     newRow = row.concat(fillUp(columns, row));
                 }
 
-                return <MjmlSection padding="0" key={key}>
-                    {
-                        newRow.map((item, key) => {
-                            const column = React.cloneElement(item,{
-                                key: 'column-' + key,
-                                ...item.props,
-                                mjClass: (item.props.mjClass || '' ) + ' grid__item',
-                                cssClass: (item.props.cssClass || '') + ' grid__item',
-                                width: `${columnWidth}%`
-                            })
+                let rowElements = newRow.map((item, key) => {
+                    const column = React.cloneElement(item,{
+                        key: 'column-' + key,
+                        ...item.props,
+                        mjClass: (item.props.mjClass || '' ) + ' grid__item',
+                        cssClass: (item.props.cssClass || '') + ' grid__item' + ` grid--v-align-${verticalAlign}`,
+                        width: `${columnWidth}%`
+                    })
 
-                            return <>
-                                { column }
-                                { key < columns - 1 &&
-                                    <MjmlColumn cssClass="grid__gutter" padding="0" width={`${spacerWidth}%`} mjClass="grid__gutter" />
-                                }
-                            </>
-                        })
+                    return <>
+                        { column }
+                        { key < columns - 1 &&
+                            <MjmlColumn cssClass="grid__gutter" padding="0" width={`${spacerWidth}%`} mjClass="grid__gutter" />
+                        }
+                    </>
+                })
+
+                if ( !responsive ) {
+                    rowElements = <MjmlGroup cssClass={ `grid__unresponsive grid--v-align-${verticalAlign}` }>{rowElements}</MjmlGroup>
+                }
+                return <MjmlSection cssClass={`grid--v-align-${verticalAlign}`} padding="0" key={key}>
+                    {
+                        rowElements
                     }
                 </MjmlSection>
             })
