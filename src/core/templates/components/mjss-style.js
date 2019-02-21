@@ -11,7 +11,13 @@ const MjssStyle = ({children, folder, src}) => {
     return <Mjml.MjmlAttributes>
         {
             map(css.parse(style).stylesheet.rules, (style) => {
+                if(style.selectors === undefined && style.media) {
+                    throw new Error(`MjssValidationError: @media ${style.media} - media queries are not allowed in <MjssStyle>`)
+                }
                 return style.selectors.map((selector) => {
+                    if (selector[0] === '#') {
+                        throw new Error(`MjssValidationError:\n'${selector}' { ... } - Id's are not allowed in <MjssStyle>`);
+                    }
                     if (selector.split(' ').length > 1) {
                         throw new Error(`MjssValidationError:\n'${selector}' { ... } - Nesting is not allowed in <MjssStyle>`);
                     }
@@ -22,7 +28,17 @@ const MjssStyle = ({children, folder, src}) => {
                         '*': Mjml.MjmlAll
                     }
 
-                    const Type = types[selectorFirstChar] || Mjml[upperFirst(camelCase(selector))];
+                    let Type = types[selectorFirstChar];
+
+                    if (Type === undefined) {
+                        const MjmlTag = Mjml[upperFirst(camelCase(selector))];
+                        if( MjmlTag === undefined ) {
+                            throw new Error(`MjssValidationError:\n'${selector}' { ... } - Is not a valid Mjml tag. Use <CssStyle> for standard html tags`);
+                        }
+                        Type = MjmlTag;
+                    }
+
+
 
                     const props = {};
 
