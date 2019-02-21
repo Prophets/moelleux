@@ -38,8 +38,6 @@ const MjssStyle = ({children, folder, src}) => {
                         Type = MjmlTag;
                     }
 
-
-
                     const props = {};
 
                     if(selectorFirstChar === '.') {
