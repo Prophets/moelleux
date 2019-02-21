@@ -5,6 +5,7 @@ import {
 } from 'mjml-react';
 import chunk from 'lodash/chunk';
 import times from 'lodash/times';
+import styles from './global-styles';
 
 
 const fillUp = (columns, row) => times(Math.max(0, columns - row.length), (item, key) => (
@@ -38,7 +39,11 @@ const calcWidths = (columns, gutter, maxWidth) => {
         spacerWidth
     }
 }
-const Grid = ({columns = 2, gutter= 10, children, justifyContent = 'left', responsive = true, maxWidth = 600, verticalAlign = 'top' }) => {
+const Grid = ({ children, ...style }) => {
+    let {columns, gutter, justifyContent, responsive, maxWidth, verticalAlign} = { ...styles.grid, ...style }
+    gutter = parseInt(gutter, 10);
+    maxWidth = parseInt(maxWidth, 10);
+    responsive = JSON.parse(responsive);
     return <>
         {
             chunk(React.Children.toArray(children), columns).map((row, key) => {
@@ -85,6 +90,13 @@ const Grid = ({columns = 2, gutter= 10, children, justifyContent = 'left', respo
             })
         }
     </>
+};
+
+Grid.style = (props) => {
+    styles.grid = {
+        ...styles.grid, ...props
+    }
+    return undefined;
 };
 
 export default Grid;

@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import fs from 'fs';
 import camelCase from 'lodash/camelCase';
 import upperFirst from 'lodash/upperFirst';
+import  * as components from './';
 
 const MjssStyle = ({children, folder, src}) => {
     const style = children || String(fs.readFileSync(`${__dirname}/../../../../public/${ folder }${ src }`));
@@ -15,6 +16,7 @@ const MjssStyle = ({children, folder, src}) => {
                     throw new Error(`MjssValidationError: @media ${style.media} - media queries are not allowed in <MjssStyle>`)
                 }
                 return style.selectors.map((selector) => {
+                    let isMjmlComponent = true;
                     if (selector[0] === '#') {
                         throw new Error(`MjssValidationError:\n'${selector}' { ... } - Id's are not allowed in <MjssStyle>`);
                     }
@@ -32,10 +34,15 @@ const MjssStyle = ({children, folder, src}) => {
 
                     if (Type === undefined) {
                         const MjmlTag = Mjml[upperFirst(camelCase(selector))];
-                        if( MjmlTag === undefined ) {
-                            throw new Error(`MjssValidationError:\n'${selector}' { ... } - Is not a valid Mjml tag. Use <CssStyle> for standard html tags`);
-                        }
                         Type = MjmlTag;
+                    }
+
+                    if (Type === undefined) {
+                        const Component = components[upperFirst(camelCase(selector))];
+                        if (Component && Component.style) {
+                            isMjmlComponent = false;
+                            Type = Component;
+                        }
                     }
 
                     const props = {};
@@ -48,7 +55,11 @@ const MjssStyle = ({children, folder, src}) => {
                         props[camelCase(style.property)] = style.value;
                     });
 
-                    return <Type {...props}>{' '}</Type>
+                    if(isMjmlComponent) {
+                        return <Type {...props}>{' '}</Type>
+                    }
+
+                    return Type.style(props);
                 })
             })
         }

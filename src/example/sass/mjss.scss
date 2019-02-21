@@ -18,3 +18,8 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+
+grid {
+    gutter: $padding;
+    columns: 3;
+}

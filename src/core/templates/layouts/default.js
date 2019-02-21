@@ -99,7 +99,7 @@ const DefaultLayout = (props) => {
                         <H2>Grid columns:3, justify:left</H2>
                     </MjmlColumn>
                 </MjmlSection>
-                <Grid columns="3" justifyContent="left">
+                <Grid justifyContent="left">
                     {
                         props.content.articles.map((article, key) => (
                             <MjmlColumn key={key}>
