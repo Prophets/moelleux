@@ -27,11 +27,6 @@ const PluginError = require('plugin-error');
 const replaceExtension = require('replace-ext');
 const through = require('through2');
 
-const registerComponent = require('mjml-core').registerComponent;
-const MjImageProphets = require('../../components/MjImageProphets');
-
-registerComponent(MjImageProphets.default);
-
 const getLanguages = (folder) => {
     let location = './' + folder;
 
