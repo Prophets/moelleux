@@ -156,15 +156,17 @@ const DefaultLayout = (props) => {
                         <H2>Grid columns:3, justifyContent:center, verticalAlign:middle, responsive:false</H2>
                     </MjmlColumn>
                 </MjmlSection>
-                <Grid columns="3" width="300" responsive={false} justifyContent="center" verticalAlign="middle">
-                    {
-                        props.content.logos.map((logo, key) => (
-                            <MjmlColumn key={key}>
-                                <MjmlImage src={logo.src} />
-                            </MjmlColumn>
-                        ))
-                    }
-                </Grid>
+                <MjmlSection>
+                    <Grid columns="3" width="300" responsive={false} justifyContent="center" verticalAlign="middle">
+                        {
+                            props.content.logos.map((logo, key) => (
+                                <MjmlColumn key={key}>
+                                    <MjmlImage src={logo.src} />
+                                </MjmlColumn>
+                            ))
+                        }
+                    </Grid>
+                </MjmlSection>
                 { props.children }
                 <Footer />
             </MjmlBody>

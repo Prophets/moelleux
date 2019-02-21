@@ -12,6 +12,10 @@ const MjssStyle = ({children, folder, src}) => {
         {
             map(css.parse(style).stylesheet.rules, (style) => {
                 return style.selectors.map((selector) => {
+                    if (selector.split(' ').length > 1) {
+                        throw new Error(`MjssValidationError:\n'${selector}' { ... } - Nesting is not allowed in <MjssStyle>`);
+                    }
+
                     const selectorFirstChar = selector[0];
                     const types = {
                         '.': Mjml.MjmlClass,

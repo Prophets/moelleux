@@ -80,8 +80,11 @@ const reactMjmlRender = function (options) {
                 cb();
             }
         } catch(e) {
-            const note = '\n \nNOTE: If you have no other option then forcing this markup set config.emails.mjml.validationLevel to "soft"';
-            this.emit('error', new PluginError('gulp-mjml-react', e.message + note, {fileName: file.path}));
+            let message = e.message;
+            if(message.indexOf('ValidationError:') === 0 ){
+                message = message + '\n \nNOTE: If you have no other option then forcing this markup set config.emails.mjml.validationLevel to "soft"';
+            }
+            this.emit('error', new PluginError('gulp-mjml-react', message, {fileName: file.path}));
             cb();
         }
     });
