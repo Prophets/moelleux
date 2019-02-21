@@ -7,7 +7,8 @@ const Image = ({ src, srcset, cssClass, fullWidth, ...otherProps }) => (
     <MailContext.Consumer>
         { ({data}) => {
             return <MjmlImage
-                cssClass={ (cssClass || '') + ( fullWidth ? ' image--full-width' : '') }
+                fluidOnMobile={true}
+                padding="0"
                 src={data.imagesDestination +'/'+ src}
                 srcset={srcset && srcset.trim().split(',').filter(item => item.trim().length !== 0).map((item)=> {
                     const parts = item.trim().split(' ').filter(item => item !== '');
