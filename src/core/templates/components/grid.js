@@ -7,8 +7,8 @@ import chunk from 'lodash/chunk';
 import times from 'lodash/times';
 
 
-const fillUp = (columns, row) => times(Math.max(0, columns - row.length), (item) => (
-    <MjmlColumn padding="0" key={item} />
+const fillUp = (columns, row) => times(Math.max(0, columns - row.length), (item, key) => (
+    <MjmlColumn key={key} padding="0" />
 ));
 
 const justifyResolve = (value) => {
@@ -66,16 +66,16 @@ const Grid = ({columns = 2, gutter= 10, children, justifyContent = 'left', respo
                         width: `${columnWidth}%`
                     })
 
-                    return <>
+                    return <React.Fragment key={key}>
                         { column }
                         { key < columns - 1 &&
                             <MjmlColumn cssClass="grid__gutter" padding="0" width={`${spacerWidth}%`} mjClass="grid__gutter" />
                         }
-                    </>
+                    </React.Fragment>
                 })
 
                 if ( !responsive ) {
-                    rowElements = <MjmlGroup cssClass={ `grid__unresponsive grid--v-align-${verticalAlign}` }>{rowElements}</MjmlGroup>
+                    rowElements = <MjmlGroup cssClass={ `grid__fixed grid--v-align-${verticalAlign}` }>{rowElements}</MjmlGroup>
                 }
                 return <MjmlSection cssClass={`grid--v-align-${verticalAlign}`} padding="0" key={key}>
                     {

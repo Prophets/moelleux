@@ -30,7 +30,7 @@ const MjssStyle = ({children, folder, src}) => {
                         props[camelCase(style.property)] = style.value;
                     });
 
-                    return <Type {...props} />
+                    return <Type {...props}>{' '}</Type>
                 })
             })
         }

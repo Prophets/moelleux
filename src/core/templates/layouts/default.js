@@ -2,18 +2,13 @@ import {
     Mjml,
     MjmlHead,
     MjmlTitle,
-    MjmlPreview,
+    MjmlWrapper,
     MjmlBody,
     MjmlSection,
     MjmlColumn,
     MjmlImage,
     MjmlText,
     MjmlFont,
-    MjmlAttributes,
-    MjmlStyle,
-    MjmlAll,
-    MjmlButton,
-    MjmlClass
 } from 'mjml-react';
 import SupHeader from '../partials/supheader';
 import Footer from '../partials/footer';
@@ -49,25 +44,11 @@ const DefaultLayout = (props) => {
             <MjmlBody>
                 <SupHeader />
                 {
-                    props.content.blocks.map(({ type, data }, index) => {
+                    props.content.blocks.map(({ type, data }, key) => {
                         const Block = require(`../partials/${type}`).default;
-                        return <Block {...data} />
+                        return <Block key={key} {...data} />
                     })
                 }
-                <MjmlSection>
-                    <MjmlColumn>
-                        <H2>Grid columns 3 justify right</H2>
-                    </MjmlColumn>
-                </MjmlSection>
-                <Grid columns="3" justifyContent="right">
-                    {
-                        props.content.articles.map(article => (
-                            <MjmlColumn>
-                                <Article/>
-                            </MjmlColumn>
-                        ))
-                    }
-                </Grid>
                 <MjmlSection>
                     <MjmlColumn>
                         <H2>Grid columns 3 justify left</H2>
@@ -75,9 +56,23 @@ const DefaultLayout = (props) => {
                 </MjmlSection>
                 <Grid columns="3" justifyContent="left">
                     {
-                        props.content.articles.map(article => (
-                            <MjmlColumn>
-                                <Article/>
+                        props.content.articles.map((article, key) => (
+                            <MjmlColumn key={key}>
+                                <Article { ...article }/>
+                            </MjmlColumn>
+                        ))
+                    }
+                </Grid>
+                <MjmlSection>
+                    <MjmlColumn>
+                        <H2>Grid columns 4 justify right</H2>
+                    </MjmlColumn>
+                </MjmlSection>
+                <Grid columns="4" justifyContent="right">
+                    {
+                        props.content.articles.map((article, key) => (
+                            <MjmlColumn key={key}>
+                                <Article { ...article }/>
                             </MjmlColumn>
                         ))
                     }
@@ -89,23 +84,23 @@ const DefaultLayout = (props) => {
                 </MjmlSection>
                 <Grid columns="3" justifyContent="stretch">
                     {
-                        props.content.articles.map(article => (
-                            <MjmlColumn>
-                                <Article/>
+                        props.content.articles.map((article, key) => (
+                            <MjmlColumn key={key}>
+                                <Article { ...article }/>
                             </MjmlColumn>
                         ))
                     }
                 </Grid>
                 <MjmlSection>
                     <MjmlColumn>
-                        <H2>Grid columns 3 justify center</H2>
+                        <H2>Grid columns 2 justify center</H2>
                     </MjmlColumn>
                 </MjmlSection>
-                <Grid columns="4" justifyContent="center">
+                <Grid columns="2" justifyContent="center">
                     {
-                        props.content.articles.map(article => (
-                            <MjmlColumn>
-                                <Article/>
+                        props.content.articles.map((article, key) => (
+                            <MjmlColumn key={key}>
+                                <Article { ...article }/>
                             </MjmlColumn>
                         ))
                     }
@@ -113,14 +108,13 @@ const DefaultLayout = (props) => {
 
                 <MjmlSection>
                     <MjmlColumn>
-                        <H2>Unresponsive Grid columns 3 justify center</H2>
+                        <H2>Fixed Grid columns 3 justify center verticalAlign center</H2>
                     </MjmlColumn>
-
                 </MjmlSection>
-                <Grid columns="3" responsive={false} justifyContent="center" verticalAlign="middle">
+                <Grid columns="3" width="300" responsive={false} justifyContent="center" verticalAlign="middle">
                     {
-                        props.content.logos.map(logo => (
-                            <MjmlColumn>
+                        props.content.logos.map((logo, key) => (
+                            <MjmlColumn key={key}>
                                 <MjmlImage src={logo.src} />
                             </MjmlColumn>
                         ))

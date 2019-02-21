@@ -66,7 +66,7 @@ const reactMjmlRender = function (options) {
     return through.obj(function (file, enc, cb) {
         try{
             const render = require('./render').default;
-            const { html, error } = render(file.path, file.data);
+            const { html, error } = render(file.path, file.data, config.tasks.emails.mjml);
             if(html) {
                 file.contents = Buffer.from(html);
 
@@ -80,7 +80,8 @@ const reactMjmlRender = function (options) {
                 cb();
             }
         } catch(e) {
-            this.emit('error', new PluginError('gulp-mjml-react', e, {fileName: file.path}));
+            const note = '\n \nNOTE: If you have no other option then forcing this markup set config.emails.mjml.validationLevel to "soft"';
+            this.emit('error', new PluginError('gulp-mjml-react', e.message + note, {fileName: file.path}));
             cb();
         }
     });

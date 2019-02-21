@@ -13,6 +13,7 @@ module.exports = {
         'compress': false
     },
     'mjml': {
-        'minify': false
+        'minify': false,
+        'validationLevel': 'strict' // can be skip, soft, strict
     }
 };
