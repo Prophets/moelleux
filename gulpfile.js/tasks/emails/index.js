@@ -102,6 +102,7 @@ const emailsTask = () => {
                     },
                     manageEnv(env) {
                         env.addGlobal('imagePath', imagesDestination);
+                        env.addGlobal('destinationPath', config.root.dest);
                     }
                 }))
                 .on('error', handleErrors)
